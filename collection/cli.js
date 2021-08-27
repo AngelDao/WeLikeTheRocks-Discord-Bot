@@ -13,10 +13,6 @@ if (process.env.PROJECT_ID) {
   );
 }
 
-const abiCoder = ethers.utils.defaultAbiCoder;
-
-const etherRock = new ethers.Contract(EtherRock, RockABI, provider);
-
 const etherRockInterface = new ethers.utils.Interface(RockABI);
 
 const api = require("etherscan-api").init(process.env.ETHERSCAN);
