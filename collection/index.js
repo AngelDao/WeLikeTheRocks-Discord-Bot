@@ -7,7 +7,7 @@ const { getRocks } = require("./utils/getRocks");
 let rocks;
 
 client.on("ready", async (v, i) => {
-  // rocks = await getRocks();
+  rocks = await getRocks();
   await client.user.setActivity("ROCKS", { type: "WATCHING" });
 });
 
