@@ -17,21 +17,12 @@ const etherRockInterface = new ethers.utils.Interface(RockABI);
 
 const api = require("etherscan-api").init(process.env.ETHERSCAN);
 
-const getLowest = (rocks) => {
-  let lowest;
-  let rock;
-  rocks.forEach((r) => {
-    if (lowest) {
-      if (r.price < lowest) {
-        lowest = r.price;
-        rock = r.rock_number;
-      }
-    } else {
-      lowest = r.price;
-      rock = r.rock_number;
-    }
+const getLowest = (rocks) => {  
+  let floorRock = rocks.reduce((prev,curr) => {
+    return parseFloat(prev.price) < parseFloat(curr.price) ? prev : curr;
   });
-  return [parseFloat(lowest), rock];
+
+  return [floorRock.price, floorRock.rock_number];
 };
 
 const CLI = {
